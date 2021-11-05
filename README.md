@@ -1,0 +1,4 @@
+# iBMSONview
+
+DXライブラリを使ったBMSONのビューワ
+fbmsonplayがうまく動かんし自作しようかと

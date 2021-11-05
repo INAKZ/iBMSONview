@@ -1,0 +1,11 @@
+#pragma once
+#include"DynamicArrayInt.h"
+#include"DynamicArrayShortInt.h"
+#include"DynamicArrayLongInt.h"
+#include"DynamicArrayLongLongInt.h"
+#include"DynamicArrayUnsignedInt.h"
+#include"DynamicArrayUnsignedShortInt.h"
+#include"DynamicArrayUnsignedLongInt.h"
+#include"DynamicArrayUnsignedLongLongInt.h"
+#include"DynamicArrayDouble.h"
+#include"DynamicArray_DAChar.h"
