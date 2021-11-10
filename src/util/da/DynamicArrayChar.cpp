@@ -1,17 +1,19 @@
 #include "DynamicArrayChar.h"
 
+//size:•¶Žš—ñ‚Ì’·‚³, value:•¶Žš—ñ+\0‚È‚Ì‚Å’·‚³‚Ísize+1
 DynamicArrayChar::DynamicArrayChar() {
-	size = 1;
-	value = new char[size];
-	value[0] = 0;
+	size = 0;
+	value = new char[size + 1];
+	Zeros();
 }
 DynamicArrayChar::DynamicArrayChar(int setsize) {
 	size = setsize;
-	value = new char[size];
-	ZerosChar(value, size);
+	value = new char[size + 1];
+	Zeros();
 }
 DynamicArrayChar::DynamicArrayChar(int setsize, char* setvalue) {
 	size = setsize;
+	value = new char[size + 1];
 	SetValues(setvalue, setsize);
 }
 DynamicArrayChar::~DynamicArrayChar() {
@@ -19,7 +21,7 @@ DynamicArrayChar::~DynamicArrayChar() {
 }
 
 void DynamicArrayChar::Zeros() {
-	ZerosChar(value, size);
+	ZerosChar(value, size + 1);
 }
 
 int DynamicArrayChar::GetSize() {
@@ -38,28 +40,30 @@ void DynamicArrayChar::SetValue(int n, char v) {
 }
 void DynamicArrayChar::SetValues(char *array, int arraysize) {
 	char *tmp;
-	tmp = new char[arraysize];
+	tmp = new char[arraysize + 1];
 	for (int i = 0; i < arraysize; i++) {
 		tmp[i] = array[i];
 	}
+	tmp[arraysize] = '\0';
 	delete value;
 	value = tmp;
 	size = arraysize;
 }
 
 void DynamicArrayChar::InsValues(int n, char *v, int vsize) {
-	char *tmp;
 	if (n > size) { return; }
-	tmp = new char[size + vsize];
+	char *tmp;
+	tmp = new char[size + vsize + 1];
 	for (int i = 0; i < n; i++) {
 		tmp[i] = value[i];
 	}
 	for (int i = n; i < n + vsize; i++) {
 		tmp[i] = v[i - n];
 	}
-	for (int i = n + vsize; i < size + vsize; i++) {
+	for (int i = n + vsize; i < size + vsize + 1; i++) {
 		tmp[i] = value[i - vsize];
 	}
+	tmp[size + vsize + 1] = '\0';
 	delete value;
 	value = tmp;
 	size += vsize;
@@ -79,13 +83,14 @@ void DynamicArrayChar::Cat(DynamicArrayChar *src) {
 void DynamicArrayChar::DelValue(int n) {
 	if (n >= size) { return; }
 	char *tmp;
-	tmp = new char[size - 1];
+	tmp = new char[size];
 	for (int i = 0; i < n; i++) {
 		tmp[i] = value[i];
 	}
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
+	tmp[size] = '\0';
 	delete value;
 	value = tmp;
 	size--;

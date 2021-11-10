@@ -8,4 +8,4 @@
 #include"DynamicArrayUnsignedLongInt.h"
 #include"DynamicArrayUnsignedLongLongInt.h"
 #include"DynamicArrayDouble.h"
-#include"DynamicArray_DAChar.h"
+#include"DynamicArray_String.h"

@@ -29,5 +29,6 @@ private:
 	int size;
 	char *value;
 };
+//typedef DynamicArrayChar _String;
 typedef DynamicArrayChar* DAChar;
 typedef DynamicArrayChar* String;

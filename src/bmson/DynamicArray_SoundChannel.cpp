@@ -3,8 +3,7 @@
 DynamicArray_SoundChannel::DynamicArray_SoundChannel() {
 	size = 1;
 	value = new SoundChannel[size];
-	value[0].SetName(new DynamicArrayChar);
-	value[0].SetNotes(new DynamicArray_Note);
+	Zeros();
 }
 DynamicArray_SoundChannel::DynamicArray_SoundChannel(int setsize) {
 	size = setsize;
@@ -16,6 +15,7 @@ DynamicArray_SoundChannel::~DynamicArray_SoundChannel() {
 }
 
 void DynamicArray_SoundChannel::Zeros() {
+	DrawFormatString(0, 16, GetColor(255, 255, 255), "hi");
 	for (int i = 0; i < size; i++) {
 		value[i].SetName(new DynamicArrayChar);
 		value[i].SetNotes(new DynamicArray_Note);

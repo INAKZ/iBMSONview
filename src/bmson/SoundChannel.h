@@ -7,14 +7,14 @@ public:
 	SoundChannel();
 	~SoundChannel();
 
-	DAChar GetName();
+	String GetName();
 	DA_Note GetNotes();
 
-	void SetName(DAChar value);
+	void SetName(String value);
 	void SetNotes(DA_Note value);
 
 private:
-	DAChar name;
+	String name;
 	DA_Note notes;
 };
 

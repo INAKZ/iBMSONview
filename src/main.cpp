@@ -1,5 +1,5 @@
-
 #include "./util/util.h"
+#include "./bmson/dxlibbmson.h"
 
 extern boolean gameEnd = false;
 
@@ -19,19 +19,36 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	DragFileInfoClear();
 	//SetUseASyncLoadFlag(TRUE);			// 非同期読み込みする(ローディングバーとか出せるし曲が止まらない)
 
-	boolean acceptable = false;
-
-	const unsigned int colorWhite = GetColor(255, 255, 255);
 	//bmsMode = 1:bmson, 2:bmx, 3:なんか混ざってる, 0or-1:etc(error)
 
 	/*----- 初期化 -----*/
 	InitGraph();
 	InitSoundMem();
+	boolean acceptable = true;
+	//boolean gameEnd = false;
 
-	acceptable = true;
+
+	const unsigned int colorWhite = GetColor(255, 255, 255);
+
+	/* ----- ----- ここからデバック用 ----- -----*/
+	String bmxPath = new DynamicArrayChar;
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "初期状態");
+	/* ----- ----- ここまでデバック用 ----- -----*/
 
 	/*----- ----- ここから@MainLoop ----- -----*/
 	while (ProcessMessage() == 0 && !gameEnd) {
+		if (GetDragFilePath(bmxPath->GetValue()) == 0 && acceptable) {
+			acceptable = false;
+		}
+		if (!acceptable) {
+			//InitGraph();
+			//InitSoundMem();
+			ClearDrawScreen();
+			DrawFormatString(0, 0, GetColor(255, 255, 255), "受付: %s", bmxPath->GetValue());
+			DrawFormatString(0, 16, GetColor(255, 255, 255), "読み込み終わりー！");
+			acceptable = true;
+			//OpenBmson(bmxPath);
+		}
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) { gameEnd = true; }	//escキーでいつでも終了
 		ScreenFlip();
@@ -39,6 +56,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	InitGraph();
 	InitSoundMem();
+	delete bmxPath;
 	DxLib_End();
 	return 0;
 }

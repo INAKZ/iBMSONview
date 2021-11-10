@@ -5,7 +5,7 @@ BmsonInfo::BmsonInfo() {
 	title = new DynamicArrayChar;
 	subtitle = new DynamicArrayChar;
 	artist = new DynamicArrayChar;
-	subartists = new DynamicArray_DAChar;
+	subartists = new DynamicArray_String;
 	genre = new DynamicArrayChar;
 	mode_hint = new DynamicArrayChar(8, tmp);
 	chart_name = new DynamicArrayChar;

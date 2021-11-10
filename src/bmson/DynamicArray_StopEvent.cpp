@@ -3,8 +3,7 @@
 DynamicArray_StopEvent::DynamicArray_StopEvent() {
 	size = 1;
 	value = new StopEvent[size];
-	value[0].SetY(0);
-	value[0].SetDuration(0);
+	Zeros();
 }
 DynamicArray_StopEvent::DynamicArray_StopEvent(int setsize) {
 	size = setsize;
