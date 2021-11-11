@@ -14,7 +14,7 @@ DynamicArray_Note::DynamicArray_Note(int setsize) {
 	Zeros();
 }
 DynamicArray_Note::~DynamicArray_Note() {
-	delete value;
+	delete[] value;
 }
 
 void DynamicArray_Note::Zeros() {
@@ -46,7 +46,7 @@ void DynamicArray_Note::SetValues(Note* array, int arraysize) {
 	for (int i = 0; i < arraysize; i++) {
 		tmp[i] = array[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size = arraysize;
 }
@@ -64,7 +64,7 @@ void DynamicArray_Note::InsValues(int n, Note* v, int vsize) {
 	for (int i = n + vsize; i < size + vsize; i++) {
 		tmp[i] = value[i - vsize];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size += vsize;
 }
@@ -90,7 +90,7 @@ void DynamicArray_Note::DelValue(int n) {
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size--;
 }

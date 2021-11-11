@@ -11,7 +11,7 @@ DynamicArray_BarLine::DynamicArray_BarLine(int setsize) {
 	Zeros();
 }
 DynamicArray_BarLine::~DynamicArray_BarLine() {
-	delete value;
+	delete[] value;
 }
 
 void DynamicArray_BarLine::Zeros() {
@@ -40,7 +40,7 @@ void DynamicArray_BarLine::SetValues(BarLine* array, int arraysize) {
 	for (int i = 0; i < arraysize; i++) {
 		tmp[i] = array[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size = arraysize;
 }
@@ -58,7 +58,7 @@ void DynamicArray_BarLine::InsValues(int n, BarLine* v, int vsize) {
 	for (int i = n + vsize; i < size + vsize; i++) {
 		tmp[i] = value[i - vsize];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size += vsize;
 }
@@ -84,7 +84,7 @@ void DynamicArray_BarLine::DelValue(int n) {
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size--;
 }

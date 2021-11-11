@@ -22,8 +22,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//bmsMode = 1:bmson, 2:bmx, 3:なんか混ざってる, 0or-1:etc(error)
 
 	/*----- 初期化 -----*/
-	InitGraph();
-	InitSoundMem();
 	boolean acceptable = true;
 	//boolean gameEnd = false;
 
@@ -41,13 +39,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			acceptable = false;
 		}
 		if (!acceptable) {
-			//InitGraph();
-			//InitSoundMem();
+			InitGraph();
+			InitSoundMem();
 			ClearDrawScreen();
 			DrawFormatString(0, 0, GetColor(255, 255, 255), "受付: %s", bmxPath->GetValue());
 			DrawFormatString(0, 16, GetColor(255, 255, 255), "読み込み終わりー！");
 			acceptable = true;
-			//OpenBmson(bmxPath);
+			OpenBmson(bmxPath);
 		}
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) { gameEnd = true; }	//escキーでいつでも終了

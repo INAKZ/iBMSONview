@@ -1,6 +1,7 @@
 #include "DynamicArrayChar.h"
 
 //size:•¶š—ñ‚Ì’·‚³, value:•¶š—ñ+\0‚È‚Ì‚Å’·‚³‚Ísize+1
+//value[size-1]‚Ü‚Å‚ª•¶š—ñ‚Åvalue[size]‚Íí‚É'\0'
 DynamicArrayChar::DynamicArrayChar() {
 	size = 0;
 	value = new char[size + 1];
@@ -17,7 +18,7 @@ DynamicArrayChar::DynamicArrayChar(int setsize, char* setvalue) {
 	SetValues(setvalue, setsize);
 }
 DynamicArrayChar::~DynamicArrayChar() {
-	delete value;
+	delete[] value;
 }
 
 void DynamicArrayChar::Zeros() {
@@ -45,7 +46,7 @@ void DynamicArrayChar::SetValues(char *array, int arraysize) {
 		tmp[i] = array[i];
 	}
 	tmp[arraysize] = '\0';
-	delete value;
+	delete[] value;
 	value = tmp;
 	size = arraysize;
 }
@@ -63,8 +64,8 @@ void DynamicArrayChar::InsValues(int n, char *v, int vsize) {
 	for (int i = n + vsize; i < size + vsize + 1; i++) {
 		tmp[i] = value[i - vsize];
 	}
-	tmp[size + vsize + 1] = '\0';
-	delete value;
+	tmp[size + vsize] = '\0';
+	delete[] value;
 	value = tmp;
 	size += vsize;
 }
@@ -90,8 +91,8 @@ void DynamicArrayChar::DelValue(int n) {
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
-	tmp[size] = '\0';
-	delete value;
+	tmp[size - 1] = '\0';
+	delete[] value;
 	value = tmp;
 	size--;
 }

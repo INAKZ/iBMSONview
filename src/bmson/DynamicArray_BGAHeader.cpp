@@ -12,7 +12,7 @@ DynamicArray_BGAHeader::DynamicArray_BGAHeader(int setsize) {
 	Zeros();
 }
 DynamicArray_BGAHeader::~DynamicArray_BGAHeader() {
-	delete value;
+	delete[] value;
 }
 
 void DynamicArray_BGAHeader::Zeros() {
@@ -42,7 +42,7 @@ void DynamicArray_BGAHeader::SetValues(BGAHeader* array, int arraysize) {
 	for (int i = 0; i < arraysize; i++) {
 		tmp[i] = array[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size = arraysize;
 }
@@ -60,7 +60,7 @@ void DynamicArray_BGAHeader::InsValues(int n, BGAHeader* v, int vsize) {
 	for (int i = n + vsize; i < size + vsize; i++) {
 		tmp[i] = value[i - vsize];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size += vsize;
 }
@@ -86,7 +86,7 @@ void DynamicArray_BGAHeader::DelValue(int n) {
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size--;
 }

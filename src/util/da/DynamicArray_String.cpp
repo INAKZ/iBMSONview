@@ -14,15 +14,15 @@ DynamicArray_String::DynamicArray_String(String setvalue) {
 	value[0] = setvalue;
 }
 DynamicArray_String::~DynamicArray_String() {
-	delete value;
+	delete[] value;
 }
 
 void DynamicArray_String::Zeros() {
-	//delete value;
-	//value = new String[size];
-	for (int i = 0; i < size; i++) {
+	delete[] value;
+	value = new String[size];
+	/*for (int i = 0; i < size; i++) {
 		value[i]->SetValues(new char[value[i]->GetSize()], value[i]->GetSize());
-	}
+	}*/
 }
 
 int DynamicArray_String::GetSize() {
@@ -45,7 +45,7 @@ void DynamicArray_String::SetValues(String *array, int arraysize) {
 	for (int i = 0; i < arraysize; i++) {
 		tmp[i] = array[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size = arraysize;
 }
@@ -63,7 +63,7 @@ void DynamicArray_String::InsValues(int n, String *v, int vsize) {
 	for (int i = n + vsize; i < size + vsize; i++) {
 		tmp[i] = value[i - vsize];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size += vsize;
 }
@@ -89,7 +89,7 @@ void DynamicArray_String::DelValue(int n) {
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size--;
 }

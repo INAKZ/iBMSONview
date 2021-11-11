@@ -11,7 +11,7 @@ DynamicArrayUnsignedShortInt::DynamicArrayUnsignedShortInt(int setsize) {
 	ZerosUnsignedShortInt(value, size);
 }
 DynamicArrayUnsignedShortInt::~DynamicArrayUnsignedShortInt() {
-	delete value;
+	delete[] value;
 }
 
 void DynamicArrayUnsignedShortInt::Zeros() {
@@ -38,7 +38,7 @@ void DynamicArrayUnsignedShortInt::SetValues(unsigned short int *array, int arra
 	for (int i = 0; i < arraysize; i++) {
 		tmp[i] = array[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size = arraysize;
 }
@@ -56,7 +56,7 @@ void DynamicArrayUnsignedShortInt::InsValues(int n, unsigned short int *v, int v
 	for (int i = n + vsize; i < size + vsize; i++) {
 		tmp[i] = value[i - vsize];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size += vsize;
 }
@@ -82,7 +82,7 @@ void DynamicArrayUnsignedShortInt::DelValue(int n) {
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size--;
 }

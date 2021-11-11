@@ -11,7 +11,7 @@ DynamicArrayUnsignedLongInt::DynamicArrayUnsignedLongInt(int setsize) {
 	ZerosUnsignedLongInt(value, size);
 }
 DynamicArrayUnsignedLongInt::~DynamicArrayUnsignedLongInt() {
-	delete value;
+	delete[] value;
 }
 
 void DynamicArrayUnsignedLongInt::Zeros() {
@@ -38,7 +38,7 @@ void DynamicArrayUnsignedLongInt::SetValues(unsigned long int* array, int arrays
 	for (int i = 0; i < arraysize; i++) {
 		tmp[i] = array[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size = arraysize;
 }
@@ -56,7 +56,7 @@ void DynamicArrayUnsignedLongInt::InsValues(int n, unsigned long int* v, int vsi
 	for (int i = n + vsize; i < size + vsize; i++) {
 		tmp[i] = value[i - vsize];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size += vsize;
 }
@@ -82,7 +82,7 @@ void DynamicArrayUnsignedLongInt::DelValue(int n) {
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size--;
 }

@@ -11,7 +11,7 @@ DynamicArray_StopEvent::DynamicArray_StopEvent(int setsize) {
 	Zeros();
 }
 DynamicArray_StopEvent::~DynamicArray_StopEvent() {
-	delete value;
+	delete[] value;
 }
 
 void DynamicArray_StopEvent::Zeros() {
@@ -41,7 +41,7 @@ void DynamicArray_StopEvent::SetValues(StopEvent* array, int arraysize) {
 	for (int i = 0; i < arraysize; i++) {
 		tmp[i] = array[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size = arraysize;
 }
@@ -59,7 +59,7 @@ void DynamicArray_StopEvent::InsValues(int n, StopEvent* v, int vsize) {
 	for (int i = n + vsize; i < size + vsize; i++) {
 		tmp[i] = value[i - vsize];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size += vsize;
 }
@@ -85,7 +85,7 @@ void DynamicArray_StopEvent::DelValue(int n) {
 	for (int i = n + 1; i < size; i++) {
 		tmp[i - 1] = value[i];
 	}
-	delete value;
+	delete[] value;
 	value = tmp;
 	size--;
 }

@@ -18,7 +18,8 @@ void OpenBmson(DAChar filePath) {
 				tmps->AddValue(FileRead_getc(bmsonHandle));
 				if (tmps->GetValuen(j) == '\\') {
 					//ƒ^ƒCƒgƒ‹‚Æ‚©‚É'"'‚ªŠÜ‚Ü‚ê‚é“z(\"‚Æ‚©)‚ð“E”­
-					tmps->SetValue(j, FileRead_getc(bmsonHandle));
+					tmps->DelValue(j);
+					tmps->AddValue(FileRead_getc(bmsonHandle));
 					i++;
 					j--;
 					continue;
