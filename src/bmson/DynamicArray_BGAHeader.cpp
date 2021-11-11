@@ -1,10 +1,9 @@
 #include "DynamicArray_BGAHeader.h"
 
 DynamicArray_BGAHeader::DynamicArray_BGAHeader() {
-	size = 1;
+	size = 0;
 	value = new BGAHeader[size];
-	value[0].SetId(0);
-	value[0].SetName(new DynamicArrayChar);
+	Zeros();
 }
 DynamicArray_BGAHeader::DynamicArray_BGAHeader(int setsize) {
 	size = setsize;
@@ -12,7 +11,11 @@ DynamicArray_BGAHeader::DynamicArray_BGAHeader(int setsize) {
 	Zeros();
 }
 DynamicArray_BGAHeader::~DynamicArray_BGAHeader() {
+	for (int i = 0; i < size; i++) {
+		value[i].~BGAHeader();
+	}
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArray_BGAHeader::Zeros() {

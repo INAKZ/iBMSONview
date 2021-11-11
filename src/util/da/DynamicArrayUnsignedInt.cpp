@@ -12,6 +12,7 @@ DynamicArrayUnsignedInt::DynamicArrayUnsignedInt(int setsize) {
 }
 DynamicArrayUnsignedInt::~DynamicArrayUnsignedInt() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArrayUnsignedInt::Zeros() {

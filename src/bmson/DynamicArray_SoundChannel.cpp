@@ -1,7 +1,7 @@
 #include "DynamicArray_SoundChannel.h"
 
 DynamicArray_SoundChannel::DynamicArray_SoundChannel() {
-	size = 1;
+	size = 0;
 	value = new SoundChannel[size];
 	Zeros();
 }
@@ -11,11 +11,14 @@ DynamicArray_SoundChannel::DynamicArray_SoundChannel(int setsize) {
 	Zeros();
 }
 DynamicArray_SoundChannel::~DynamicArray_SoundChannel() {
+	for (int i = 0; i < size; i++) {
+		value[i].~SoundChannel();
+	}
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArray_SoundChannel::Zeros() {
-	DrawFormatString(0, 16, GetColor(255, 255, 255), "hi");
 	for (int i = 0; i < size; i++) {
 		value[i].SetName(new DynamicArrayChar);
 		value[i].SetNotes(new DynamicArray_Note);

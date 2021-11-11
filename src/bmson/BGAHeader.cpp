@@ -6,6 +6,7 @@ BGAHeader::BGAHeader() {
 }
 BGAHeader::~BGAHeader() {
 	delete name;
+	name = 0;
 }
 
 unsigned long BGAHeader::GetId() {

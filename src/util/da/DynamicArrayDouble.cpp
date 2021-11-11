@@ -12,6 +12,7 @@ DynamicArrayDouble::DynamicArrayDouble(int setsize) {
 }
 DynamicArrayDouble::~DynamicArrayDouble() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArrayDouble::Zeros() {

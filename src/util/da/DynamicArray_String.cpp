@@ -1,12 +1,14 @@
 #include "DynamicArray_String.h"
 
 DynamicArray_String::DynamicArray_String() {
-	size = 1;
+	size = 0;
 	value = new String[size];
+	Zeros();
 }
 DynamicArray_String::DynamicArray_String(int setsize) {
 	size = setsize;
 	value = new String[size];
+	Zeros();
 }
 DynamicArray_String::DynamicArray_String(String setvalue) {
 	size = 1;
@@ -14,7 +16,11 @@ DynamicArray_String::DynamicArray_String(String setvalue) {
 	value[0] = setvalue;
 }
 DynamicArray_String::~DynamicArray_String() {
+	for (int i = 0; i < size; i++) {
+		value[i]->~DynamicArrayChar();
+	}
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArray_String::Zeros() {

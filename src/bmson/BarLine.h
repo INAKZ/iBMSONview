@@ -5,6 +5,8 @@ class BarLine {
 public:
 	BarLine();
 
+	void Zeros();
+
 	unsigned long GetY();
 
 	void SetY(unsigned long value);

@@ -5,6 +5,8 @@ class BGAEvent {
 public:
 	BGAEvent();
 
+	void Zeros();
+
 	unsigned long GetY();
 	unsigned long GetId();
 

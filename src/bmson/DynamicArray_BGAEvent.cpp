@@ -1,10 +1,9 @@
 #include "DynamicArray_BGAEvent.h"
 
 DynamicArray_BGAEvent::DynamicArray_BGAEvent() {
-	size = 1;
+	size = 0;
 	value = new BGAEvent[size];
-	value[0].SetY(0);
-	value[0].SetId(0);
+	Zeros();
 }
 DynamicArray_BGAEvent::DynamicArray_BGAEvent(int setsize) {
 	size = setsize;
@@ -13,6 +12,7 @@ DynamicArray_BGAEvent::DynamicArray_BGAEvent(int setsize) {
 }
 DynamicArray_BGAEvent::~DynamicArray_BGAEvent() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArray_BGAEvent::Zeros() {

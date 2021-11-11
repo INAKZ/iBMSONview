@@ -12,6 +12,7 @@ DynamicArrayUnsignedLongInt::DynamicArrayUnsignedLongInt(int setsize) {
 }
 DynamicArrayUnsignedLongInt::~DynamicArrayUnsignedLongInt() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArrayUnsignedLongInt::Zeros() {

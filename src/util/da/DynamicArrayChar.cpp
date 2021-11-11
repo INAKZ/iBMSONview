@@ -19,6 +19,7 @@ DynamicArrayChar::DynamicArrayChar(int setsize, char* setvalue) {
 }
 DynamicArrayChar::~DynamicArrayChar() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArrayChar::Zeros() {

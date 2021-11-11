@@ -1,10 +1,9 @@
 #include "DynamicArray_BpmEvent.h"
 
 DynamicArray_BpmEvent::DynamicArray_BpmEvent() {
-	size = 1;
+	size = 0;
 	value = new BpmEvent[size];
-	value[0].SetY(0);
-	value[0].SetBpm(100);
+	Zeros();
 }
 DynamicArray_BpmEvent::DynamicArray_BpmEvent(int setsize) {
 	size = setsize;
@@ -13,6 +12,7 @@ DynamicArray_BpmEvent::DynamicArray_BpmEvent(int setsize) {
 }
 DynamicArray_BpmEvent::~DynamicArray_BpmEvent() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArray_BpmEvent::Zeros() {

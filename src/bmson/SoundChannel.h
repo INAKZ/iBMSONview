@@ -7,6 +7,8 @@ public:
 	SoundChannel();
 	~SoundChannel();
 
+	void Zeros();
+
 	String GetName();
 	DA_Note GetNotes();
 

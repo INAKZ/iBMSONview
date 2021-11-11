@@ -6,6 +6,8 @@ public:
 	BmsonInfo();
 	~BmsonInfo();
 
+	void Zeros();
+
 	String GetTitle();
 	String GetSubtitle();
 	String GetArtist();

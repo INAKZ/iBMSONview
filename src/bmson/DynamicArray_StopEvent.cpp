@@ -1,7 +1,7 @@
 #include "DynamicArray_StopEvent.h"
 
 DynamicArray_StopEvent::DynamicArray_StopEvent() {
-	size = 1;
+	size = 0;
 	value = new StopEvent[size];
 	Zeros();
 }
@@ -12,6 +12,7 @@ DynamicArray_StopEvent::DynamicArray_StopEvent(int setsize) {
 }
 DynamicArray_StopEvent::~DynamicArray_StopEvent() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArray_StopEvent::Zeros() {

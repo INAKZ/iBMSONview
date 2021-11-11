@@ -7,6 +7,13 @@ SoundChannel::SoundChannel() {
 SoundChannel::~SoundChannel() {
 	delete name;
 	delete notes;
+	name = 0;
+	notes = 0;
+}
+
+void SoundChannel::Zeros() {
+	name->Zeros();
+	notes->Zeros();
 }
 
 DAChar SoundChannel::GetName() {

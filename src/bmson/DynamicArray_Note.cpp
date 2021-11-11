@@ -1,12 +1,9 @@
 #include "DynamicArray_Note.h"
 
 DynamicArray_Note::DynamicArray_Note() {
-	size = 1;
+	size = 0;
 	value = new Note[size];
-	value[0].SetX(0);
-	value[0].SetY(0);
-	value[0].SetL(0);
-	value[0].SetC(false);
+	Zeros();
 }
 DynamicArray_Note::DynamicArray_Note(int setsize) {
 	size = setsize;
@@ -15,6 +12,7 @@ DynamicArray_Note::DynamicArray_Note(int setsize) {
 }
 DynamicArray_Note::~DynamicArray_Note() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArray_Note::Zeros() {

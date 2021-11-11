@@ -10,6 +10,8 @@ public:
 	BGA();
 	~BGA();
 
+	void Zeros();
+
 	DA_BGAHeader GetBgaHeader();
 	DA_BGAEvent GetBgaEvents();
 	DA_BGAEvent GetLayerEvents();

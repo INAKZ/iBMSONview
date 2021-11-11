@@ -12,6 +12,7 @@ DynamicArrayShortInt::DynamicArrayShortInt(int setsize) {
 }
 DynamicArrayShortInt::~DynamicArrayShortInt() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArrayShortInt::Zeros() {

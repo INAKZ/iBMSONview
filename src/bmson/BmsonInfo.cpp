@@ -31,6 +31,17 @@ BmsonInfo::~BmsonInfo() {
 	delete eyecatch_image;
 	delete banner_image;
 	delete preview_music;
+	title = 0;
+	subtitle = 0;
+	artist = 0;
+	subartists = 0;
+	genre = 0;
+	mode_hint = 0;
+	chart_name = 0;
+	back_image = 0;
+	eyecatch_image = 0;
+	banner_image = 0;
+	preview_music = 0;
 }
 
 DAChar BmsonInfo::GetTitle() {

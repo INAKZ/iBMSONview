@@ -5,6 +5,8 @@ class Note{
 public:
 	Note();
 
+	void Zeros();
+
 	int GetX();
 	unsigned long GetY();
 	unsigned long GetL();

@@ -17,6 +17,13 @@ Bmson::~Bmson() {
 	delete stop_events;
 	delete sound_channels;
 	delete bga;
+	version = 0;
+	info = 0;
+	lines = 0;
+	bpm_events = 0;
+	stop_events = 0;
+	sound_channels = 0;
+	bga = 0;
 }
 
 DAChar Bmson::GetVersion() {

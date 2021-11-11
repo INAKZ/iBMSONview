@@ -6,6 +6,8 @@ public:
 	BGAHeader();
 	~BGAHeader();
 
+	void Zeros();
+
 	unsigned long GetId();
 	DAChar GetName();
 

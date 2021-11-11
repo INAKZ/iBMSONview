@@ -5,6 +5,8 @@ class StopEvent {
 public:
 	StopEvent();
 
+	void Zeros();
+
 	unsigned long GetY();
 	unsigned long GetDuration();
 

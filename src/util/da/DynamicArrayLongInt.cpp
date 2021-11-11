@@ -12,6 +12,7 @@ DynamicArrayLongInt::DynamicArrayLongInt(int setsize) {
 }
 DynamicArrayLongInt::~DynamicArrayLongInt() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArrayLongInt::Zeros() {

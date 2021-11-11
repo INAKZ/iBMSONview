@@ -12,6 +12,7 @@ DynamicArrayInt::DynamicArrayInt(int setsize) {
 }
 DynamicArrayInt::~DynamicArrayInt() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArrayInt::Zeros() {

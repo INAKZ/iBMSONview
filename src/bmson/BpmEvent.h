@@ -5,6 +5,8 @@ class BpmEvent{
 public:
 	BpmEvent();
 
+	void Zeros();
+
 	unsigned long GetY();
 	double GetBpm();
 

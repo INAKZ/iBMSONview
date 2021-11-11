@@ -11,6 +11,10 @@ BGA::~BGA() {
 	delete bga_events;
 	delete layer_events;
 	delete poor_events;
+	bga_header = 0;
+	bga_events = 0;
+	layer_events = 0;
+	poor_events = 0;
 }
 
 DA_BGAHeader BGA::GetBgaHeader() {

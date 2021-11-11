@@ -1,9 +1,9 @@
 #include "DynamicArray_BarLine.h"
 
 DynamicArray_BarLine::DynamicArray_BarLine() {
-	size = 1;
+	size = 0;
 	value = new BarLine[size];
-	value[0].SetY(0);
+	Zeros();
 }
 DynamicArray_BarLine::DynamicArray_BarLine(int setsize) {
 	size = setsize;
@@ -12,6 +12,7 @@ DynamicArray_BarLine::DynamicArray_BarLine(int setsize) {
 }
 DynamicArray_BarLine::~DynamicArray_BarLine() {
 	delete[] value;
+	value = 0;
 }
 
 void DynamicArray_BarLine::Zeros() {

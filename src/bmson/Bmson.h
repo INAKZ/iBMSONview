@@ -12,6 +12,8 @@ public:
 	Bmson();
 	~Bmson();
 
+	void Zeros();
+
 	DAChar GetVersion();
 	BmsonInfo* GetInfo();
 	DA_BarLine GetLines();
