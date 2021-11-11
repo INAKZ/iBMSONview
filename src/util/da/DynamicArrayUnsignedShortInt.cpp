@@ -28,6 +28,9 @@ unsigned short int *DynamicArrayUnsignedShortInt::GetValue() {
 	return value;
 }
 
+void DynamicArrayUnsignedShortInt::SetSize(int n) {
+	size = n;
+}
 void DynamicArrayUnsignedShortInt::SetValue(int n, unsigned short int v) {
 	if (n > size) { return; }
 	value[n] = v;

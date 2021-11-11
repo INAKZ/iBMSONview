@@ -15,6 +15,7 @@ public:
 	String GetValuen(int n);
 	String *GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, String v);
 	void SetValues(String *array, int arraysize);
 

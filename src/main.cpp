@@ -23,9 +23,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	/*----- 初期化 -----*/
 	boolean acceptable = true;
+	char tmpPath[256];//256文字以上のパスは扱えない…折角動的配列クラスを作ったのにどうにかならんのかな？
 	//boolean gameEnd = false;
 
-
+	ZerosChar(tmpPath, 256);
 	const unsigned int colorWhite = GetColor(255, 255, 255);
 
 	/* ----- ----- ここからデバック用 ----- -----*/
@@ -35,7 +36,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	/*----- ----- ここから@MainLoop ----- -----*/
 	while (ProcessMessage() == 0 && !gameEnd) {
-		if (GetDragFilePath(bmxPath->GetValue()) == 0 && acceptable) {
+		if (GetDragFilePath(tmpPath) == 0 && acceptable) {
+			delete bmxPath;
+			bmxPath = new DynamicArrayChar;
+			for (int i = 0; tmpPath[i] != '\0'; i++) {
+				bmxPath->AddValue(tmpPath[i]);
+			}
+			bmxPath->AddValue('\0');
 			acceptable = false;
 		}
 		if (!acceptable) {
@@ -43,7 +50,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			InitSoundMem();
 			ClearDrawScreen();
 			DrawFormatString(0, 0, GetColor(255, 255, 255), "受付: %s", bmxPath->GetValue());
-			DrawFormatString(0, 16, GetColor(255, 255, 255), "読み込み終わりー！");
 			acceptable = true;
 			OpenBmson(bmxPath);
 		}

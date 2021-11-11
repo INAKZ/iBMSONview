@@ -14,6 +14,7 @@ public:
 	BarLine GetValuen(int n);
 	BarLine* GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, BarLine v);
 	void SetValues(BarLine* array, int arraysize);
 

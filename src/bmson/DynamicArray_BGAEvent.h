@@ -14,6 +14,7 @@ public:
 	BGAEvent GetValuen(int n);
 	BGAEvent* GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, BGAEvent v);
 	void SetValues(BGAEvent* array, int arraysize);
 

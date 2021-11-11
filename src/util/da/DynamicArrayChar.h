@@ -15,6 +15,7 @@ public:
 	char GetValuen(int n);
 	char *GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, char v);
 	void SetValues(char *array, int arraysize);
 

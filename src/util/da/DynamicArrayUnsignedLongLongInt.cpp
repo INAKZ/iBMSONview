@@ -28,6 +28,9 @@ unsigned long long int *DynamicArrayUnsignedLongLongInt::GetValue() {
 	return value;
 }
 
+void DynamicArrayUnsignedLongLongInt::SetSize(int n) {
+	size = n;
+}
 void DynamicArrayUnsignedLongLongInt::SetValue(int n, unsigned long long int v) {
 	if (n > size) { return; }
 	value[n] = v;

@@ -28,6 +28,9 @@ int *DynamicArrayInt::GetValue() {
 	return value;
 }
 
+void DynamicArrayInt::SetSize(int n) {
+	size = n;
+}
 void DynamicArrayInt::SetValue(int n, int v) {
 	if (n > size) { return; }
 	value[n] = v;

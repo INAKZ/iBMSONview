@@ -14,6 +14,7 @@ public:
 	BpmEvent GetValuen(int n);
 	BpmEvent* GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, BpmEvent v);
 	void SetValues(BpmEvent* array, int arraysize);
 

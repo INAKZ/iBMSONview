@@ -36,6 +36,9 @@ Note* DynamicArray_Note::GetValue() {
 	return value;
 }
 
+void DynamicArray_Note::SetSize(int n) {
+	size = n;
+}
 void DynamicArray_Note::SetValue(int n, Note v) {
 	if (n > size) { return; }
 	value[n] = v;

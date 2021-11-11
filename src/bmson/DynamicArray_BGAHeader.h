@@ -14,6 +14,7 @@ public:
 	BGAHeader GetValuen(int n);
 	BGAHeader *GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, BGAHeader v);
 	void SetValues(BGAHeader *array, int arraysize);
 

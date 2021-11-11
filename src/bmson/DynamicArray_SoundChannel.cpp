@@ -32,6 +32,9 @@ SoundChannel* DynamicArray_SoundChannel::GetValue() {
 	return value;
 }
 
+void DynamicArray_SoundChannel::SetSize(int n) {
+	size = n;
+}
 void DynamicArray_SoundChannel::SetValue(int n, SoundChannel v) {
 	if (n > size) { return; }
 	value[n] = v;

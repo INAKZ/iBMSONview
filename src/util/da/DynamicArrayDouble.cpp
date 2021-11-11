@@ -28,6 +28,9 @@ double *DynamicArrayDouble::GetValue() {
 	return value;
 }
 
+void DynamicArrayDouble::SetSize(int n) {
+	size = n;
+}
 void DynamicArrayDouble::SetValue(int n, double v) {
 	if (n > size) { return; }
 	value[n] = v;

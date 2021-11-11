@@ -28,6 +28,9 @@ unsigned int *DynamicArrayUnsignedInt::GetValue() {
 	return value;
 }
 
+void DynamicArrayUnsignedInt::SetSize(int n) {
+	size = n;
+}
 void DynamicArrayUnsignedInt::SetValue(int n, unsigned int v) {
 	if (n > size) { return; }
 	value[n] = v;

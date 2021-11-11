@@ -32,6 +32,9 @@ BGAHeader* DynamicArray_BGAHeader::GetValue() {
 	return value;
 }
 
+void DynamicArray_BGAHeader::SetSize(int n) {
+	size = n;
+}
 void DynamicArray_BGAHeader::SetValue(int n, BGAHeader v) {
 	if (n > size) { return; }
 	value[n] = v;

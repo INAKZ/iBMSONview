@@ -14,6 +14,7 @@ public:
 	Note GetValuen(int n);
 	Note* GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, Note v);
 	void SetValues(Note* array, int arraysize);
 

@@ -13,6 +13,7 @@ public:
 	long int GetValuen(int n);
 	long int *GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, long int v);
 	void SetValues(long int *array, int arraysize);
 

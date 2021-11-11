@@ -28,6 +28,9 @@ short int* DynamicArrayShortInt::GetValue() {
 	return value;
 }
 
+void DynamicArrayShortInt::SetSize(int n) {
+	size = n;
+}
 void DynamicArrayShortInt::SetValue(int n, short int v) {
 	if (n > size) { return; }
 	value[n] = v;

@@ -30,6 +30,9 @@ BarLine* DynamicArray_BarLine::GetValue() {
 	return value;
 }
 
+void DynamicArray_BarLine::SetSize(int n) {
+	size = n;
+}
 void DynamicArray_BarLine::SetValue(int n, BarLine v) {
 	if (n > size) { return; }
 	value[n] = v;

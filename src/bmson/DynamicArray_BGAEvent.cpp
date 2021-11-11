@@ -32,6 +32,9 @@ BGAEvent* DynamicArray_BGAEvent::GetValue() {
 	return value;
 }
 
+void DynamicArray_BGAEvent::SetSize(int n) {
+	size = n;
+}
 void DynamicArray_BGAEvent::SetValue(int n, BGAEvent v) {
 	if (n > size) { return; }
 	value[n] = v;

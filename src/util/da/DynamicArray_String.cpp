@@ -35,6 +35,9 @@ String *DynamicArray_String::GetValue() {
 	return value;
 }
 
+void DynamicArray_String::SetSize(int n) {
+	size = n;
+}
 void DynamicArray_String::SetValue(int n, String v) {
 	if (n > size) { return; }
 	value[n] = v;

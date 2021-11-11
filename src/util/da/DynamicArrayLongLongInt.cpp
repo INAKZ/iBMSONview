@@ -28,6 +28,9 @@ long long int *DynamicArrayLongLongInt::GetValue() {
 	return value;
 }
 
+void DynamicArrayLongLongInt::SetSize(int n) {
+	size = n;
+}
 void DynamicArrayLongLongInt::SetValue(int n, long long int v) {
 	if (n > size) { return; }
 	value[n] = v;

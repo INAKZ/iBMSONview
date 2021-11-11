@@ -14,6 +14,7 @@ public:
 	SoundChannel GetValuen(int n);
 	SoundChannel* GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, SoundChannel v);
 	void SetValues(SoundChannel* array, int arraysize);
 

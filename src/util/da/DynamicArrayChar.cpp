@@ -35,6 +35,9 @@ char *DynamicArrayChar::GetValue() {
 	return value;
 }
 
+void DynamicArrayChar::SetSize(int n) {
+	size = n;
+}
 void DynamicArrayChar::SetValue(int n, char v) {
 	if (n > size) { return; }
 	value[n] = v;
@@ -61,7 +64,7 @@ void DynamicArrayChar::InsValues(int n, char *v, int vsize) {
 	for (int i = n; i < n + vsize; i++) {
 		tmp[i] = v[i - n];
 	}
-	for (int i = n + vsize; i < size + vsize + 1; i++) {
+	for (int i = n + vsize; i < size + vsize; i++) {
 		tmp[i] = value[i - vsize];
 	}
 	tmp[size + vsize] = '\0';

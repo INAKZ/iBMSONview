@@ -32,6 +32,9 @@ BpmEvent* DynamicArray_BpmEvent::GetValue() {
 	return value;
 }
 
+void DynamicArray_BpmEvent::SetSize(int n) {
+	size = n;
+}
 void DynamicArray_BpmEvent::SetValue(int n, BpmEvent v) {
 	if (n > size) { return; }
 	value[n] = v;

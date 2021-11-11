@@ -14,6 +14,7 @@ public:
 	StopEvent GetValuen(int n);
 	StopEvent* GetValue();
 
+	void SetSize(int n);
 	void SetValue(int n, StopEvent v);
 	void SetValues(StopEvent* array, int arraysize);
 

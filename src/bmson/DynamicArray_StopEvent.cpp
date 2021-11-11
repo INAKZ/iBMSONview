@@ -31,6 +31,9 @@ StopEvent* DynamicArray_StopEvent::GetValue() {
 	return value;
 }
 
+void DynamicArray_StopEvent::SetSize(int n) {
+	size = n;
+}
 void DynamicArray_StopEvent::SetValue(int n, StopEvent v) {
 	if (n > size) { return; }
 	value[n] = v;
