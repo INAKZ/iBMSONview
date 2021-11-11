@@ -55,7 +55,7 @@ fbmsonplayがうまく動かんし自作しようかとしたけどなんかよ�
 →配列のdeleteをdelete[]にして解決
 
 ## 作ってる人
-いなくーず
+いなくーず/INAKZ
 
 - [いなくーず・こあ(webpage)](https://inakz.github.io/)
 - [twitter](https://twitter.com/INAKZgrepe)
