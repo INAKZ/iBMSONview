@@ -17,6 +17,10 @@ fbmsonplayがうまく動かんし自作しようかとしたけどなんかよ�
 
   パク参考にさせていただきます
 
+- [Python Tutor](https://pythontutor.com/visualize.html)
+
+  すごい便利（こなみ）
+
 ## 開発について
 
 個人の趣味でテキトーに作ってますが協力とかも一応受け付けてます
