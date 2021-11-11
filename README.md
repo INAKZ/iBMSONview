@@ -19,7 +19,7 @@ fbmsonplayがうまく動かんし自作しようかとしたけどなんかよ�
 
 - [Python Tutor](https://pythontutor.com/visualize.html)
 
-  すごい便利（こなみ）
+  視覚的にプログラムの動作を確認できる奴　すごい便利（こなみ）
 
 ## 開発について
 
