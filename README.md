@@ -2,7 +2,7 @@
 
 DXライブラリを使ったBMSONのビューワ
 
-fbmsonplayがうまく動かんし自作しようかとしたけどなんかよくわからんエラーが出て絶望してた
+fbmsonplayがうまく動かんし自作しようかとしたけどなんかよくわからんエラーが出て絶望してる
 
 ## 参考URL
 - [bmson仕様書](https://bmson-spec.readthedocs.io/en/master/)
