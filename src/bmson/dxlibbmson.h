@@ -1,6 +1,6 @@
 #pragma once
 #include "Bmson.h"
 
-void OpenBmson(DAChar filePath);
+void OpenBmson(String filePath);
 
 Bmson GetBmson();

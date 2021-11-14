@@ -3,7 +3,10 @@
 static Bmson bmson;
 static int bmsonHandle;
 
-void OpenBmson(DAChar filePath) {
+void OpenBmson(String filePath) {
+	InitGraph();
+	InitSoundMem();
+	ClearDrawScreen();
 	String tmps = new DynamicArrayChar(1);
 	//String tmps2 = new DynamicArrayChar;
 	int xx = 0;

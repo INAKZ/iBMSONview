@@ -1,5 +1,5 @@
 #include "./util/util.h"
-#include "./bmson/dxlibbmson.h"
+#include "./dxlibbmxutil.h"
 
 extern boolean gameEnd = false;
 
@@ -18,15 +18,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDragFileValidFlag(true);				// ファイルのD&Dを許可
 	DragFileInfoClear();
 	//SetUseASyncLoadFlag(TRUE);			// 非同期読み込みする(ローディングバーとか出せるし曲が止まらない)
-
-	//bmsMode = 1:bmson, 2:bmx, 3:なんか混ざってる, 0or-1:etc(error)
-
+	
 	/*----- 初期化 -----*/
 	boolean acceptable = true;
-	char tmpPath[256];//256文字以上のパスは扱えない…折角動的配列クラスを作ったのにどうにかならんのかな？
-	//boolean gameEnd = false;
 
-	ZerosChar(tmpPath, 256);
 	const unsigned int colorWhite = GetColor(255, 255, 255);
 
 	/* ----- ----- ここからデバック用 ----- -----*/
@@ -36,22 +31,29 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	/*----- ----- ここから@MainLoop ----- -----*/
 	while (ProcessMessage() == 0 && !gameEnd) {
-		if (GetDragFilePath(tmpPath) == 0 && acceptable) {
-			delete bmxPath;
-			bmxPath = new DynamicArrayChar;
-			for (int i = 0; tmpPath[i] != '\0'; i++) {
-				bmxPath->AddValue(tmpPath[i]);
-			}
-			bmxPath->AddValue('\0');
+		if (GetDragFilePath(bmxPath->GetValue()) == 0 && acceptable) {
 			acceptable = false;
 		}
 		if (!acceptable) {
-			InitGraph();
-			InitSoundMem();
-			ClearDrawScreen();
-			DrawFormatString(0, 0, GetColor(255, 255, 255), "受付: %s", bmxPath->GetValue());
+			DrawFormatString(0, 0, GetColor(255, 255, 255), "受付: %s", bmxPath->GetValue());/*
+			switch (WhatsThisBmx(bmxPath)) {
+			case ID_BMXUTIL_BMSON:
+				//OpenBmson(bmxPath);
+				DrawFormatString(0, 16, GetColor(255, 255, 255), "BMSONファイルです");
+				break;
+			case ID_BMXUTIL_BMS:
+				DrawFormatString(0, 16, GetColor(255, 255, 255), "Error:BMSファイルは現在未対応ですがそのうち対応予定です");
+				break;
+			case ID_BMXUTIL_ERROR:
+				DrawFormatString(0, 16, GetColor(255, 255, 255), "Error:対応していないファイル形式または中の人が知らないファイル形式です");
+				break;
+			default:
+				DrawFormatString(0, 16, GetColor(255, 255, 255), "Error:そのうち対応予定のファイル形式です");
+				break;
+			}*/
 			acceptable = true;
-			OpenBmson(bmxPath);
+			delete bmxPath;
+			bmxPath = new DynamicArrayChar;
 		}
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) { gameEnd = true; }	//escキーでいつでも終了
