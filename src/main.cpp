@@ -20,6 +20,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//SetUseASyncLoadFlag(TRUE);			// 非同期読み込みする(ローディングバーとか出せるし曲が止まらない)
 	
 	/*----- 初期化 -----*/
+	char tmpStr[512];
+	ZerosChar(tmpStr, 512);
 	boolean acceptable = true;
 
 	const unsigned int colorWhite = GetColor(255, 255, 255);
@@ -31,14 +33,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	/*----- ----- ここから@MainLoop ----- -----*/
 	while (ProcessMessage() == 0 && !gameEnd) {
-		if (GetDragFilePath(bmxPath->GetValue()) == 0 && acceptable) {
-			acceptable = false;
+		if (GetDragFilePath(tmpStr) == 0 && acceptable) {
+			ClearDrawScreen();
+			if (strlen(tmpStr) >= 510) {
+				DrawFormatString(0, 0, GetColor(255, 255, 255), "Error:ファイルパスが長すぎます");
+			} else {
+				bmxPath->SetValues(tmpStr, strlen(tmpStr));
+				acceptable = false;
+			}
 		}
 		if (!acceptable) {
-			DrawFormatString(0, 0, GetColor(255, 255, 255), "受付: %s", bmxPath->GetValue());/*
+			DrawFormatString(0, 0, GetColor(255, 255, 255), "受付: %s", bmxPath->GetValue());
 			switch (WhatsThisBmx(bmxPath)) {
 			case ID_BMXUTIL_BMSON:
-				//OpenBmson(bmxPath);
+				OpenBmson(bmxPath);
 				DrawFormatString(0, 16, GetColor(255, 255, 255), "BMSONファイルです");
 				break;
 			case ID_BMXUTIL_BMS:
@@ -50,10 +58,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			default:
 				DrawFormatString(0, 16, GetColor(255, 255, 255), "Error:そのうち対応予定のファイル形式です");
 				break;
-			}*/
+			}
 			acceptable = true;
 			delete bmxPath;
 			bmxPath = new DynamicArrayChar;
+			ZerosChar(tmpStr, 512);
 		}
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) { gameEnd = true; }	//escキーでいつでも終了
@@ -62,7 +71,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	InitGraph();
 	InitSoundMem();
+	CloseBmson();
 	delete bmxPath;
+	bmxPath = 0;
 	DxLib_End();
 	return 0;
 }

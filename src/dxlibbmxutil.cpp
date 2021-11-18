@@ -30,6 +30,8 @@ int WhatsThisBmx(const String filePath) {
 	}
 	if (filetype == ID_BMXUTIL_ZERO) {
 		filetype = ID_BMXUTIL_ERROR;
-	}	
+	}
+	delete tmps;
+	tmps = 0;
 	return filetype;
 }
