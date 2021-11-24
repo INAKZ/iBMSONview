@@ -37,13 +37,15 @@ void DynamicArray_BpmEvent::SetSize(int n) {
 }
 void DynamicArray_BpmEvent::SetValue(int n, BpmEvent v) {
 	if (n > size) { return; }
-	value[n] = v;
+	value[n].SetY(v.GetY());
+	value[n].SetBpm(v.GetBpm());
 }
 void DynamicArray_BpmEvent::SetValues(BpmEvent* array, int arraysize) {
 	BpmEvent* tmp;
 	tmp = new BpmEvent[arraysize];
 	for (int i = 0; i < arraysize; i++) {
-		tmp[i] = array[i];
+		tmp[i].SetY(array[i].GetY());
+		tmp[i].SetBpm(array[i].GetBpm());
 	}
 	delete[] value;
 	value = tmp;
@@ -55,13 +57,16 @@ void DynamicArray_BpmEvent::InsValues(int n, BpmEvent* v, int vsize) {
 	if (n > size) { return; }
 	tmp = new BpmEvent[size + vsize];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetY(value[i].GetY());
+		tmp[i].SetBpm(value[i].GetBpm());
 	}
 	for (int i = n; i < n + vsize; i++) {
-		tmp[i] = v[i - n];
+		tmp[i].SetY(v[i - n].GetY());
+		tmp[i].SetBpm(v[i - n].GetBpm());
 	}
 	for (int i = n + vsize; i < size + vsize; i++) {
-		tmp[i] = value[i - vsize];
+		tmp[i].SetY(value[i - vsize].GetY());
+		tmp[i].SetBpm(value[i - vsize].GetBpm());
 	}
 	delete[] value;
 	value = tmp;
@@ -84,10 +89,12 @@ void DynamicArray_BpmEvent::DelValue(int n) {
 	BpmEvent* tmp;
 	tmp = new BpmEvent[size - 1];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetY(value[i].GetY());
+		tmp[i].SetBpm(value[i].GetBpm());
 	}
 	for (int i = n + 1; i < size; i++) {
-		tmp[i - 1] = value[i];
+		tmp[i - 1].SetY(value[i].GetY());
+		tmp[i - 1].SetBpm(value[i].GetBpm());
 	}
 	delete[] value;
 	value = tmp;

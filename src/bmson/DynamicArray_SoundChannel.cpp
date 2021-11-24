@@ -40,13 +40,15 @@ void DynamicArray_SoundChannel::SetSize(int n) {
 }
 void DynamicArray_SoundChannel::SetValue(int n, SoundChannel v) {
 	if (n > size) { return; }
-	value[n] = v;
+	value[n].SetName(v.GetName());
+	value[n].SetNotes(v.GetNotes());
 }
 void DynamicArray_SoundChannel::SetValues(SoundChannel* array, int arraysize) {
 	SoundChannel* tmp;
 	tmp = new SoundChannel[arraysize];
 	for (int i = 0; i < arraysize; i++) {
-		tmp[i] = array[i];
+		tmp[i].SetName(array[i].GetName());
+		tmp[i].SetNotes(array[i].GetNotes());
 	}
 	delete[] value;
 	value = tmp;
@@ -58,13 +60,16 @@ void DynamicArray_SoundChannel::InsValues(int n, SoundChannel* v, int vsize) {
 	if (n > size) { return; }
 	tmp = new SoundChannel[size + vsize];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetName(value[i].GetName());
+		tmp[i].SetNotes(value[i].GetNotes());
 	}
 	for (int i = n; i < n + vsize; i++) {
-		tmp[i] = v[i - n];
+		tmp[i].SetName(v[i - n].GetName());
+		tmp[i].SetNotes(v[i - n].GetNotes());
 	}
 	for (int i = n + vsize; i < size + vsize; i++) {
-		tmp[i] = value[i - vsize];
+		tmp[i].SetName(value[i - vsize].GetName());
+		tmp[i].SetNotes(value[i - vsize].GetNotes());
 	}
 	delete[] value;
 	value = tmp;
@@ -87,10 +92,12 @@ void DynamicArray_SoundChannel::DelValue(int n) {
 	SoundChannel* tmp;
 	tmp = new SoundChannel[size - 1];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetName(value[i].GetName());
+		tmp[i].SetNotes(value[i].GetNotes());
 	}
 	for (int i = n + 1; i < size; i++) {
-		tmp[i - 1] = value[i];
+		tmp[i - 1].SetName(value[i].GetName());
+		tmp[i - 1].SetNotes(value[i].GetNotes());
 	}
 	delete[] value;
 	value = tmp;

@@ -141,3 +141,7 @@ void BmsonInfo::SetPreviewMusic(DAChar value) {
 void BmsonInfo::SetResolution(unsigned long value) {
 	resolution = value;
 }
+
+void BmsonInfo::AddSubartist(String value) {
+	subartists->AddValue(value);
+}

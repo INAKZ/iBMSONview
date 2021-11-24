@@ -1,5 +1,5 @@
 #pragma once
-#include "./bmson/dxlibbmson.h"
+#include "./util/util.h"
 
 constexpr int ID_BMXUTIL_ERROR		= -1;
 constexpr int ID_BMXUTIL_ZERO		= 0;

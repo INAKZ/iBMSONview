@@ -1,13 +1,16 @@
 #include "./util/util.h"
 #include "./dxlibbmxutil.h"
+#include "./bmson/bmsonutil.h"
 
 extern boolean gameEnd = false;
+
+static constexpr char* KEY_NAME_WINDOW = (char*)"iBMSONview";
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
 	//ここでconfigを読み込む(画面サイズ、フルスクリーン、非同期読み込みとか)
 
-	SetMainWindowText("iBMSONview");
+	SetMainWindowText(KEY_NAME_WINDOW);
 	ChangeWindowMode(TRUE);					//ウィンドウモード
 	SetGraphMode(960, 480, 32);				//ウィンドウサイズ設定
 	//SetOutApplicationLogValidFlag(FALSE);	//log.txtを作成しない
@@ -23,48 +26,74 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	char tmpStr[512];
 	ZerosChar(tmpStr, 512);
 	boolean acceptable = true;
-
-	const unsigned int colorWhite = GetColor(255, 255, 255);
+	String bmxPath = new DynamicArrayChar;
 
 	/* ----- ----- ここからデバック用 ----- -----*/
-	String bmxPath = new DynamicArrayChar;
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "初期状態");
+	printfDx("初期状態");
 	/* ----- ----- ここまでデバック用 ----- -----*/
 
 	/*----- ----- ここから@MainLoop ----- -----*/
 	while (ProcessMessage() == 0 && !gameEnd) {
 		if (GetDragFilePath(tmpStr) == 0 && acceptable) {
 			ClearDrawScreen();
+			clsDx();
 			if (strlen(tmpStr) >= 510) {
-				DrawFormatString(0, 0, GetColor(255, 255, 255), "Error:ファイルパスが長すぎます");
+				printfDx("Error:ファイルパスが長すぎます\n");
 			} else {
-				bmxPath->SetValues(tmpStr, strlen(tmpStr));
 				acceptable = false;
+				delete bmxPath;
+				bmxPath = new DynamicArrayChar;
+				bmxPath->SetValues(tmpStr, strlen(tmpStr));
 			}
 		}
 		if (!acceptable) {
-			DrawFormatString(0, 0, GetColor(255, 255, 255), "受付: %s", bmxPath->GetValue());
+			printfDx("受付: %s\n", bmxPath->GetValue());
 			switch (WhatsThisBmx(bmxPath)) {
 			case ID_BMXUTIL_BMSON:
-				OpenBmson(bmxPath);
-				DrawFormatString(0, 16, GetColor(255, 255, 255), "BMSONファイルです");
+				if (OpenBmson(bmxPath) == 0) {
+					if (strcmp("1.0.0", GetBmson()->GetVersion()->GetValue()) == 0) {
+						/*
+						printfDx("acceptable version:%s\n", GetBmson()->GetVersion()->GetValue());
+						printfDx("Info:\n");
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetTitle()->GetValue());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetSubtitle()->GetValue());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetArtist()->GetValue());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetGenre()->GetValue());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetModeHint()->GetValue());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetChartName()->GetValue());
+						printfDx("L--:%u\n", GetBmson()->GetInfo()->GetLevel());
+						printfDx("L--:%f\n", GetBmson()->GetInfo()->GetInitBpm());
+						printfDx("L--:%f\n", GetBmson()->GetInfo()->GetJudgeRank());
+						printfDx("L--:%f\n", GetBmson()->GetInfo()->GetTotal());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetBackImage()->GetValue());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetEyecatchImage()->GetValue());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetBannerImage()->GetValue());
+						printfDx("L--:%s\n", GetBmson()->GetInfo()->GetPreviewMusic()->GetValue());
+						printfDx("L--:%u\n", GetBmson()->GetInfo()->GetResolution());
+						*/
+						for (int i = 0; i < GetBmson()->GetLines()->GetSize(); i++) {
+							printfDx("%03d:%lu\n", i, GetBmson()->GetLines()->GetValuen(i).GetY());
+						}
+					} else {
+						printfDx("Error:unacceptable version\n");
+					}
+				} else {
+					printfDx("Error:Invalid bmson\n");
+				}
 				break;
 			case ID_BMXUTIL_BMS:
-				DrawFormatString(0, 16, GetColor(255, 255, 255), "Error:BMSファイルは現在未対応ですがそのうち対応予定です");
+				printfDx("Error:BMSファイルは現在未対応ですがそのうち対応予定です\n");
 				break;
 			case ID_BMXUTIL_ERROR:
-				DrawFormatString(0, 16, GetColor(255, 255, 255), "Error:対応していないファイル形式または中の人が知らないファイル形式です");
+				printfDx("Error:対応していないファイル形式または中の人が知らないファイル形式です\n");
 				break;
 			default:
-				DrawFormatString(0, 16, GetColor(255, 255, 255), "Error:そのうち対応予定のファイル形式です");
+				printfDx("Error:そのうち対応予定のファイル形式です\n");
 				break;
 			}
-			acceptable = true;
-			delete bmxPath;
-			bmxPath = new DynamicArrayChar;
 			ZerosChar(tmpStr, 512);
+			acceptable = true;
 		}
-
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) { gameEnd = true; }	//escキーでいつでも終了
 		ScreenFlip();
 	}

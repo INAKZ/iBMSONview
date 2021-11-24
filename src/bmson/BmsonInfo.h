@@ -42,6 +42,8 @@ public:
 	void SetPreviewMusic(String value);
 	void SetResolution(unsigned long value);
 
+	void AddSubartist(String value);
+
 private:
 	String title;
 	String subtitle;

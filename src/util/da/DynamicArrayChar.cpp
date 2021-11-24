@@ -12,6 +12,11 @@ DynamicArrayChar::DynamicArrayChar(int setsize) {
 	value = new char[size + 1];
 	Zeros();
 }
+DynamicArrayChar::DynamicArrayChar(char* setvalue) {
+	size = strlen(setvalue);
+	value = new char[size + 1];
+	SetValues(setvalue, size);
+}
 DynamicArrayChar::DynamicArrayChar(int setsize, char* setvalue) {
 	size = setsize;
 	value = new char[size + 1];
@@ -25,11 +30,17 @@ DynamicArrayChar::~DynamicArrayChar() {
 void DynamicArrayChar::Zeros() {
 	ZerosChar(value, size + 1);
 }
+void DynamicArrayChar::UpdateSize() {
+	if (GetValuen(0) == '\0') { size = 0; return; }
+	size = strlen(GetValue());
+}
 
 int DynamicArrayChar::GetSize() {
+	UpdateSize();
 	return size;
 }
 char DynamicArrayChar::GetValuen(int n) {
+	if (n > size) { return '\0'; }
 	return value[n];
 }
 char *DynamicArrayChar::GetValue() {
@@ -40,35 +51,27 @@ void DynamicArrayChar::SetSize(int n) {
 	size = n;
 }
 void DynamicArrayChar::SetValue(int n, char v) {
+	UpdateSize();
 	if (n > size) { return; }
 	value[n] = v;
 }
 void DynamicArrayChar::SetValues(char *array, int arraysize) {
-	char *tmp;
-	tmp = new char[arraysize + 1];
-	for (int i = 0; i < arraysize; i++) {
-		tmp[i] = array[i];
-	}
-	tmp[arraysize] = '\0';
 	delete[] value;
-	value = tmp;
+	value = new char[arraysize + 1];
+	strncpy_s(value, arraysize + 1, array, arraysize);
 	size = arraysize;
 }
 
-void DynamicArrayChar::InsValues(int n, char *v, int vsize) {
+void DynamicArrayChar::InsValues(int n, char* v, int vsize) {
+	UpdateSize();
 	if (n > size) { return; }
-	char *tmp;
+	char* tmp;
 	tmp = new char[size + vsize + 1];
-	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+	strncpy_s(tmp, size + vsize + 1, value, n);
+	strcat_s(tmp, size + vsize + 1, v);
+	if (n < size) {
+		strcat_s(tmp, size + vsize + 1, value + n);
 	}
-	for (int i = n; i < n + vsize; i++) {
-		tmp[i] = v[i - n];
-	}
-	for (int i = n + vsize; i < size + vsize; i++) {
-		tmp[i] = value[i - vsize];
-	}
-	tmp[size + vsize] = '\0';
 	delete[] value;
 	value = tmp;
 	size += vsize;
@@ -86,16 +89,14 @@ void DynamicArrayChar::Cat(DynamicArrayChar *src) {
 	AddValues(src->GetValue(), src->GetSize());
 }
 void DynamicArrayChar::DelValue(int n) {
+	UpdateSize();
 	if (n >= size) { return; }
 	char *tmp;
 	tmp = new char[size];
-	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+	strncpy_s(tmp, size, value, n);
+	if (n + 1 < size) {
+		strcat_s(tmp, size, value + (n + 1));
 	}
-	for (int i = n + 1; i < size; i++) {
-		tmp[i - 1] = value[i];
-	}
-	tmp[size - 1] = '\0';
 	delete[] value;
 	value = tmp;
 	size--;

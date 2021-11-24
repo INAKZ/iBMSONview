@@ -37,13 +37,15 @@ void DynamicArray_BGAEvent::SetSize(int n) {
 }
 void DynamicArray_BGAEvent::SetValue(int n, BGAEvent v) {
 	if (n > size) { return; }
-	value[n] = v;
+	value[n].SetY(v.GetY());
+	value[n].SetId(v.GetId());
 }
 void DynamicArray_BGAEvent::SetValues(BGAEvent* array, int arraysize) {
 	BGAEvent* tmp;
 	tmp = new BGAEvent[arraysize];
 	for (int i = 0; i < arraysize; i++) {
-		tmp[i] = array[i];
+		tmp[i].SetY(array[i].GetY());
+		tmp[i].SetId(array[i].GetId());
 	}
 	delete[] value;
 	value = tmp;
@@ -55,13 +57,16 @@ void DynamicArray_BGAEvent::InsValues(int n, BGAEvent* v, int vsize) {
 	if (n > size) { return; }
 	tmp = new BGAEvent[size + vsize];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetY(value[i].GetY());
+		tmp[i].SetId(value[i].GetId());
 	}
 	for (int i = n; i < n + vsize; i++) {
-		tmp[i] = v[i - n];
+		tmp[i].SetY(v[i - n].GetY());
+		tmp[i].SetId(v[i - n].GetId());
 	}
 	for (int i = n + vsize; i < size + vsize; i++) {
-		tmp[i] = value[i - vsize];
+		tmp[i].SetY(value[i - vsize].GetY());
+		tmp[i].SetId(value[i - vsize].GetId());
 	}
 	delete[] value;
 	value = tmp;
@@ -84,10 +89,12 @@ void DynamicArray_BGAEvent::DelValue(int n) {
 	BGAEvent* tmp;
 	tmp = new BGAEvent[size - 1];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetY(value[i].GetY());
+		tmp[i].SetId(value[i].GetId());
 	}
 	for (int i = n + 1; i < size; i++) {
-		tmp[i - 1] = value[i];
+		tmp[i - 1].SetY(value[i].GetY());
+		tmp[i - 1].SetId(value[i].GetId());
 	}
 	delete[] value;
 	value = tmp;

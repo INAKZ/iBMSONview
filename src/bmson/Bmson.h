@@ -14,7 +14,7 @@ public:
 
 	void Zeros();
 
-	DAChar GetVersion();
+	String GetVersion();
 	BmsonInfo* GetInfo();
 	DA_BarLine GetLines();
 	DA_BpmEvent GetBpmEvents();
@@ -22,7 +22,7 @@ public:
 	DA_SoundChannel GetSoundChannels();
 	BGA* GetBga();
 
-	void SetVersion(DAChar value);
+	void SetVersion(String value);
 	void SetInfo(BmsonInfo* value);
 	void SetLines(DA_BarLine value);
 	void SetBpmEvents(DA_BpmEvent value);
@@ -31,7 +31,7 @@ public:
 	void SetBga(BGA* value);
 
 private:
-	DAChar version;
+	String version;
 	BmsonInfo *info;
 	DA_BarLine lines;
 	DA_BpmEvent bpm_events;

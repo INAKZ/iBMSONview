@@ -3,17 +3,21 @@
 DynamicArray_String::DynamicArray_String() {
 	size = 0;
 	value = new String[size];
-	Zeros();
+	for (int i = 0; i < size; i++) {
+		value[i] = new DynamicArrayChar;
+	}
 }
 DynamicArray_String::DynamicArray_String(int setsize) {
 	size = setsize;
 	value = new String[size];
-	Zeros();
+	for (int i = 0; i < size; i++) {
+		value[i] = new DynamicArrayChar;
+	}
 }
 DynamicArray_String::DynamicArray_String(String setvalue) {
 	size = 1;
 	value = new String[size];
-	value[0] = setvalue;
+	value[0]->SetValues(setvalue->GetValue(), setvalue->GetSize());
 }
 DynamicArray_String::~DynamicArray_String() {
 	for (int i = 0; i < size; i++) {
@@ -24,11 +28,9 @@ DynamicArray_String::~DynamicArray_String() {
 }
 
 void DynamicArray_String::Zeros() {
-	delete[] value;
-	value = new String[size];
-	/*for (int i = 0; i < size; i++) {
-		value[i]->SetValues(new char[value[i]->GetSize()], value[i]->GetSize());
-	}*/
+	for (int i = 0; i < size; i++) {
+		value[i]->Zeros();
+	}
 }
 
 int DynamicArray_String::GetSize() {
@@ -46,31 +48,37 @@ void DynamicArray_String::SetSize(int n) {
 }
 void DynamicArray_String::SetValue(int n, String v) {
 	if (n > size) { return; }
-	value[n] = v;
+	if (value[n]->GetValue() != 0) {
+		delete value[n];
+		value[n] = new DynamicArrayChar;
+	}
+	value[n]->SetValues(v->GetValue(), v->GetSize());
 }
 void DynamicArray_String::SetValues(String *array, int arraysize) {
-	String *tmp;
-	tmp = new String[arraysize];
-	for (int i = 0; i < arraysize; i++) {
-		tmp[i] = array[i];
-	}
 	delete[] value;
-	value = tmp;
+	value = new String[arraysize];
+	for (int i = 0; i < arraysize; i++) {
+		value[i] = new DynamicArrayChar;
+		SetValue(i, array[i]);
+	}
 	size = arraysize;
 }
 
 void DynamicArray_String::InsValues(int n, String *v, int vsize) {
-	String *tmp;
 	if (n > size) { return; }
+	String *tmp;
 	tmp = new String[size + vsize];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i] = new DynamicArrayChar;
+		tmp[i]->SetValues(value[i]->GetValue(), value[i]->GetSize());
 	}
 	for (int i = n; i < n + vsize; i++) {
-		tmp[i] = v[i - n];
+		tmp[i] = new DynamicArrayChar;
+		tmp[i]->SetValues(v[i - n]->GetValue(), v[i - n]->GetSize());
 	}
 	for (int i = n + vsize; i < size + vsize; i++) {
-		tmp[i] = value[i - vsize];
+		tmp[i] = new DynamicArrayChar;
+		tmp[i]->SetValues(value[i - vsize]->GetValue(), value[i - vsize]->GetSize());
 	}
 	delete[] value;
 	value = tmp;
@@ -93,10 +101,12 @@ void DynamicArray_String::DelValue(int n) {
 	String *tmp;
 	tmp = new String[size - 1];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i] = new DynamicArrayChar;
+		tmp[i]->SetValues(value[i]->GetValue(), value[i]->GetSize());
 	}
 	for (int i = n + 1; i < size; i++) {
-		tmp[i - 1] = value[i];
+		tmp[i - 1] = new DynamicArrayChar;
+		tmp[i - 1]->SetValues(value[i]->GetValue(), value[i]->GetSize());
 	}
 	delete[] value;
 	value = tmp;

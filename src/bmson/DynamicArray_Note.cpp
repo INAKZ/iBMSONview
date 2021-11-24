@@ -39,13 +39,19 @@ void DynamicArray_Note::SetSize(int n) {
 }
 void DynamicArray_Note::SetValue(int n, Note v) {
 	if (n > size) { return; }
-	value[n] = v;
+	value[n].SetX(v.GetX());
+	value[n].SetY(v.GetY());
+	value[n].SetL(v.GetL());
+	value[n].SetC(v.GetC());
 }
 void DynamicArray_Note::SetValues(Note* array, int arraysize) {
 	Note* tmp;
 	tmp = new Note[arraysize];
 	for (int i = 0; i < arraysize; i++) {
-		tmp[i] = array[i];
+		tmp[i].SetX(array[i].GetX());
+		tmp[i].SetY(array[i].GetY());
+		tmp[i].SetL(array[i].GetL());
+		tmp[i].SetC(array[i].GetC());
 	}
 	delete[] value;
 	value = tmp;
@@ -57,13 +63,22 @@ void DynamicArray_Note::InsValues(int n, Note* v, int vsize) {
 	if (n > size) { return; }
 	tmp = new Note[size + vsize];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetX(value[i].GetX());
+		tmp[i].SetY(value[i].GetY());
+		tmp[i].SetL(value[i].GetL());
+		tmp[i].SetC(value[i].GetC());
 	}
 	for (int i = n; i < n + vsize; i++) {
-		tmp[i] = v[i - n];
+		tmp[i].SetX(v[i - n].GetX());
+		tmp[i].SetY(v[i - n].GetY());
+		tmp[i].SetL(v[i - n].GetL());
+		tmp[i].SetC(v[i - n].GetC());
 	}
 	for (int i = n + vsize; i < size + vsize; i++) {
-		tmp[i] = value[i - vsize];
+		tmp[i].SetX(value[i - vsize].GetX());
+		tmp[i].SetY(value[i - vsize].GetY());
+		tmp[i].SetL(value[i - vsize].GetL());
+		tmp[i].SetC(value[i - vsize].GetC());
 	}
 	delete[] value;
 	value = tmp;
@@ -86,10 +101,16 @@ void DynamicArray_Note::DelValue(int n) {
 	Note* tmp;
 	tmp = new Note[size - 1];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetX(value[i].GetX());
+		tmp[i].SetY(value[i].GetY());
+		tmp[i].SetL(value[i].GetL());
+		tmp[i].SetC(value[i].GetC());
 	}
 	for (int i = n + 1; i < size; i++) {
-		tmp[i - 1] = value[i];
+		tmp[i - 1].SetX(value[i].GetX());
+		tmp[i - 1].SetY(value[i].GetY());
+		tmp[i - 1].SetL(value[i].GetL());
+		tmp[i - 1].SetC(value[i].GetC());
 	}
 	delete[] value;
 	value = tmp;

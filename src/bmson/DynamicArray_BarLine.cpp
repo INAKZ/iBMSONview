@@ -36,13 +36,13 @@ void DynamicArray_BarLine::SetSize(int n) {
 }
 void DynamicArray_BarLine::SetValue(int n, BarLine v) {
 	if (n > size) { return; }
-	value[n] = v;
+	value[n].SetY(v.GetY());
 }
 void DynamicArray_BarLine::SetValues(BarLine* array, int arraysize) {
 	BarLine* tmp;
 	tmp = new BarLine[arraysize];
 	for (int i = 0; i < arraysize; i++) {
-		tmp[i] = array[i];
+		tmp[i].SetY(array[i].GetY());
 	}
 	delete[] value;
 	value = tmp;
@@ -54,13 +54,13 @@ void DynamicArray_BarLine::InsValues(int n, BarLine* v, int vsize) {
 	if (n > size) { return; }
 	tmp = new BarLine[size + vsize];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetY(value[i].GetY());
 	}
 	for (int i = n; i < n + vsize; i++) {
-		tmp[i] = v[i - n];
+		tmp[i].SetY(v[i - n].GetY());
 	}
 	for (int i = n + vsize; i < size + vsize; i++) {
-		tmp[i] = value[i - vsize];
+		tmp[i].SetY(value[i - vsize].GetY());
 	}
 	delete[] value;
 	value = tmp;
@@ -83,10 +83,10 @@ void DynamicArray_BarLine::DelValue(int n) {
 	BarLine* tmp;
 	tmp = new BarLine[size - 1];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetY(value[i].GetY());
 	}
 	for (int i = n + 1; i < size; i++) {
-		tmp[i - 1] = value[i];
+		tmp[i - 1].SetY(value[i].GetY());
 	}
 	delete[] value;
 	value = tmp;

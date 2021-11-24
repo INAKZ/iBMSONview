@@ -37,13 +37,15 @@ void DynamicArray_StopEvent::SetSize(int n) {
 }
 void DynamicArray_StopEvent::SetValue(int n, StopEvent v) {
 	if (n > size) { return; }
-	value[n] = v;
+	value[n].SetY(v.GetY());
+	value[n].SetDuration(v.GetDuration());
 }
 void DynamicArray_StopEvent::SetValues(StopEvent* array, int arraysize) {
 	StopEvent* tmp;
 	tmp = new StopEvent[arraysize];
 	for (int i = 0; i < arraysize; i++) {
-		tmp[i] = array[i];
+		tmp[i].SetY(array[i].GetY());
+		tmp[i].SetDuration(array[i].GetDuration());
 	}
 	delete[] value;
 	value = tmp;
@@ -55,13 +57,16 @@ void DynamicArray_StopEvent::InsValues(int n, StopEvent* v, int vsize) {
 	if (n > size) { return; }
 	tmp = new StopEvent[size + vsize];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetY(value[i].GetY());
+		tmp[i].SetDuration(value[i].GetDuration());
 	}
 	for (int i = n; i < n + vsize; i++) {
-		tmp[i] = v[i - n];
+		tmp[i].SetY(value[i - n].GetY());
+		tmp[i].SetDuration(value[i - n].GetDuration());
 	}
 	for (int i = n + vsize; i < size + vsize; i++) {
-		tmp[i] = value[i - vsize];
+		tmp[i].SetY(value[i - vsize].GetY());
+		tmp[i].SetDuration(value[i - vsize].GetDuration());
 	}
 	delete[] value;
 	value = tmp;
@@ -84,10 +89,12 @@ void DynamicArray_StopEvent::DelValue(int n) {
 	StopEvent* tmp;
 	tmp = new StopEvent[size - 1];
 	for (int i = 0; i < n; i++) {
-		tmp[i] = value[i];
+		tmp[i].SetY(value[i].GetY());
+		tmp[i].SetDuration(value[i].GetDuration());
 	}
 	for (int i = n + 1; i < size; i++) {
-		tmp[i - 1] = value[i];
+		tmp[i - 1].SetY(value[i].GetY());
+		tmp[i - 1].SetDuration(value[i].GetDuration());
 	}
 	delete[] value;
 	value = tmp;

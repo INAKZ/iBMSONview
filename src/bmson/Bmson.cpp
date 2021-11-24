@@ -48,7 +48,7 @@ BGA* Bmson::GetBga() {
 	return bga;
 }
 
-void Bmson::SetVersion(DAChar value) {
+void Bmson::SetVersion(String value) {
 	version->SetValues(value->GetValue(), value->GetSize());
 }
 void Bmson::SetInfo(BmsonInfo* value) {

@@ -6,10 +6,12 @@ class DynamicArrayChar{
 public:
 	DynamicArrayChar();
 	DynamicArrayChar(int setsize);
+	DynamicArrayChar(char* setvalue);
 	DynamicArrayChar(int setsize, char* setvalue);
 	~DynamicArrayChar();
 
 	void Zeros();
+	void UpdateSize();
 
 	int GetSize();
 	char GetValuen(int n);
